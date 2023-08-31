@@ -2,9 +2,6 @@ from lib2to3.pgen2 import driver
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-turkceKarakterler = 'ŞşİıÖöĞğÜüÇç'
-karakterDegisim = 'SsIiOoGgUuCc'
-
 while True:
     searchedObject = input("Aratmak istediğiniz eşyanın adını yazınız. Çıkış yapmak için 'çıkış' yazınız: ")
     newSearchedObject = searchedObject
@@ -12,17 +9,12 @@ while True:
     if searchedObject == "çıkış":
         break
 
-    driver = webdriver.Chrome()
+    newSearchedObject = newSearchedObject.replace("ğ", "g")
+    newSearchedObject = newSearchedObject.replace("ı", "i")
+    newSearchedObject = newSearchedObject.replace("İ", "I")
 
-    for i in newSearchedObject:
-        for j in turkceKarakterler:
-            if i == j:
-                b = 0
-                deger = turkceKarakterler.index(j)
-                for i in karakterDegisim:
-                    b = b + 1
-                    if b-1 == deger:
-                        newSearchedObject = searchedObject.replace(i, i)
+    
+    driver = webdriver.Chrome()
     
     newSearchedObject = newSearchedObject.replace(" ", "%20")
 
@@ -34,4 +26,3 @@ while True:
         driver.quit()
     except:
         print("Arama başarısız oldu lütfen tekrar deneyiniz:")
-
