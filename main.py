@@ -26,3 +26,4 @@ while True:
         driver.quit()
     except:
         print("Arama başarısız oldu lütfen tekrar deneyiniz:")
+        driver.quit()
